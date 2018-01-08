@@ -14,9 +14,11 @@ class AgentView extends Component {
       calls: 0,
       conversion: 1,
       level: 'two',
-      tenure: 'below60',
-      theme: 'Default'
+      tenure: 'above60',
+      theme: 'Flatly'
     }
+    
+    this.today = Math.floor((new Date()).getTime() / 1000 / 60 / 60 / 24)
     
     this.handleSales =  this.handleSales.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
@@ -24,11 +26,19 @@ class AgentView extends Component {
   }
   
   componentDidMount() {
-    /* TODO */
+    let lastUse = parseInt(localStorage.getItem('lastUse'), 10)
+    
+    
+    console.log(this.today, lastUse)
+    if(this.today === lastUse) {
+      let dazzle = JSON.parse(localStorage.getItem('dazzle'))
+      this.setState(dazzle)
+    }
   }
   
-  componentWillUnmount() {
-    /* TODO */
+  componentDidUpdate() {
+    localStorage.setItem('lastUse', this.today)
+    localStorage.setItem('dazzle', JSON.stringify(this.state))
   }
   
   handleSales(sales) {
@@ -90,7 +100,7 @@ class AgentView extends Component {
         <Row>
           <Tabs className="tabs" defaultActiveKey={1} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
-              <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} handleSales={this.handleSales} handleCalls={this.handleCalls} />
+              <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} level={this.state.level} tenure={this.state.tenure} handleSales={this.handleSales} handleCalls={this.handleCalls} />
             </Tab>
             <Tab eventKey={2} title="About">
               <About theme={this.state.theme} handleTheme={this.handleTheme} />
