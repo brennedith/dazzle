@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
+import { FormGroup, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap'
 
 class About extends Component {
   constructor(props) {
@@ -26,13 +26,13 @@ class About extends Component {
     return (
       <div>
         <h3>Welcome to Dazzle</h3>
-        <p>
-          Please choose a theme:
-          &nbsp;
-          <DropdownButton title={this.props.theme} id="themes">
-          { themeItems }
-          </DropdownButton>
-        </p>
+          <FormGroup>
+            <ControlLabel>Theme:</ControlLabel>
+            &nbsp;
+            <DropdownButton title={this.props.theme} id="themes">
+            { themeItems }
+            </DropdownButton>
+          </FormGroup>
       </div>
     )
   }
