@@ -10,9 +10,17 @@ class SalesPanel extends Component {
       sales: this.props.sales
     }
     
+    this.handleKeyPress = this.handleKeyPress.bind(this)
     this.updateRevenue = this.updateRevenue.bind(this)
     this.addSale = this.addSale.bind(this)
     this.removeSale = this.removeSale.bind(this)
+  }
+
+  handleKeyPress(e) {
+    if(e.charCode === 13) {
+      this.addSale()
+    }
+    return
   }
 
   updateRevenue(e) {
@@ -84,7 +92,7 @@ class SalesPanel extends Component {
               <Col md={6}>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Revenue</InputGroup.Addon>
-                  <FormControl type="number" min="0" value={this.state.revenue} onChange={this.updateRevenue}></FormControl>
+                  <FormControl type="number" min="0" value={this.state.revenue} onChange={this.updateRevenue} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
               <Col md={2}>
