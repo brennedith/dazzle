@@ -6,7 +6,7 @@ class About extends Component {
     super(props)
     
     this.state = {
-      themes: ['Default', 'Cerulean', 'Cosmo', 'Cyborg', 'Darkly', 'Flaty', 'Journal', 'Lumen', 'Paper', 'Readable', 'Sandstone', 'Simplex', 'Slate', 'Spacelab', 'Superhero', 'United', 'Yeti']
+      themes: ['Cerulean', 'Cosmo', 'Cyborg', 'Darkly', 'Flatly', 'Journal', 'Lumen', 'Paper', 'Readable', 'Sandstone', 'Simplex', 'Slate', 'Spacelab', 'Superhero', 'United', 'Yeti']
     }
     
     this.handleTheme = this.handleTheme.bind(this)
