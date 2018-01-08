@@ -38,7 +38,9 @@ class Calculator extends Component {
     this.updateConversion(sales.length, this.state.calls)
   }
   
-  updateConversion(sales, calls) {
+  updateConversion(s, c) {
+    let sales = parseInt(s, 10)
+    let calls = parseInt(c, 10)
     let conversion = calls === 0 ? 1 : (sales / calls)
     
     this.props.updateConversion(conversion)
