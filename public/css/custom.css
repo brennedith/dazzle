@@ -1,0 +1,27 @@
+/* Makes progress bar corners sharped*/
+.progress {
+  border-radius: 0;
+}
+
+/* Fixes nested rows margin */
+.row-level-1 {
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+/* Makes badge font-size inherit */
+.badge {
+  font-weight: inherit;
+  font-size: inherit;
+  color: #FFF;
+}
+
+/* Fixes tabs margin */
+.tabs {
+  margin: 0 15px;
+}
+
+/* Fixes table margin-bottom */
+.table {
+  margin-bottom: 0;
+}
