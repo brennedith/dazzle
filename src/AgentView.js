@@ -4,6 +4,7 @@ import { Grid, Row, Col, Badge, Tabs, Tab } from 'react-bootstrap'
 /* import modules and components */
 import StaminaBar from './modules/components/StaminaBar'
 import Calculator from './modules/Calculator'
+import About from './modules/About'
 
 class AgentView extends Component {
   constructor(props) {
@@ -12,12 +13,14 @@ class AgentView extends Component {
       sales: new Array(0),
       calls: 0,
       conversion: 1,
-      userConfig: {}
+      level: 'two',
+      tenure: 'below60',
+      theme: 'Default'
     }
     
     this.handleSales =  this.handleSales.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
-    this.handleConversion = this.handleConversion.bind(this)
+    this.handleTheme = this.handleTheme.bind(this)
   }
   
   componentDidMount() {
@@ -54,14 +57,24 @@ class AgentView extends Component {
     })
   }
   
+  handleTheme(theme) {
+    this.setState({
+      theme: theme
+    })
+  }
+  
   render() {
     let conversion = this.state.conversion * 100
     
     let statusClass = conversion >= 40 ? 'success' :
                       conversion >= 30 ? 'warning' : 'danger'
-    
+
     return (
       <Grid fluid>
+        { this.state.theme !== 'Default' &&
+          <link rel="stylesheet" href={ `https://bootswatch.com/3/${this.state.theme.toLowerCase()}/bootstrap.min.css` }/>
+        }
+        <link rel="stylesheet" href="/css/custom.css" />
         <Row>
           <StaminaBar now={conversion} bsStyle={statusClass} />
         </Row>
@@ -79,7 +92,8 @@ class AgentView extends Component {
             <Tab eventKey={1} title="Calculator">
               <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} handleSales={this.handleSales} handleCalls={this.handleCalls} />
             </Tab>
-            <Tab eventKey={2} title="Configuration">
+            <Tab eventKey={2} title="About">
+              <About theme={this.state.theme} handleTheme={this.handleTheme} />
             </Tab>
           </Tabs>
         </Row>
