@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Badge } from 'react-bootstrap'
+import { Grid, Row, Col, Badge, Tabs, Tab } from 'react-bootstrap'
 
 /* import modules and components */
 import StaminaBar from './modules/components/StaminaBar'
@@ -41,7 +41,15 @@ class AgentView extends Component {
           </Col>
         </Row>
         <hr />
-        <Calculator conversion={this.state.conversion} updateConversion={this.updateConversion} />
+        <Row>
+          <Tabs className="tabs" defaultActiveKey={1} animation={false} id="tabs">
+            <Tab eventKey={1} title="Calculator">
+              <Calculator conversion={this.state.conversion} updateConversion={this.updateConversion} />
+            </Tab>
+            <Tab eventKey={2} title="Configuration">
+            </Tab>
+          </Tabs>
+        </Row>
       </Grid>
     )
   }
