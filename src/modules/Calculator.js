@@ -12,9 +12,6 @@ class Calculator extends Component {
     super(props)
     
     this.state = {
-      sales: new Array(0),
-      calls: 0,
-      conversion: this.props.conversion,
       alert: 'Hard work beats talent when talent doesn’t work hard.- Tim Notke'
     }
     
@@ -23,32 +20,16 @@ class Calculator extends Component {
   }
   
   handleCalls(calls) {
-    this.setState({
-      calls: calls
-    })
-    
-    this.updateConversion(this.state.sales.length, calls)
+    this.props.handleCalls(calls)
   }
   
   handleSales(sales) {
-    this.setState({
-      sales: sales
-    })
-    
-    this.updateConversion(sales.length, this.state.calls)
-  }
-  
-  updateConversion(s, c) {
-    let sales = parseInt(s, 10)
-    let calls = parseInt(c, 10)
-    let conversion = calls === 0 ? 1 : (sales / calls)
-    
-    this.props.updateConversion(conversion)
+    this.props.handleSales(sales)
   }
   
   render() {
     
-    let sales = this.state.sales
+    let sales = this.props.sales
     let revenue = sales.length > 0 ? sales.reduce((total, value) => total + value ) : 0
 
     return (
@@ -60,7 +41,7 @@ class Calculator extends Component {
           <Col md={8}>
             <Grid fluid>
               <Row>
-                <PerformancePanel sales={sales.length} calls={this.state.calls} revenue={revenue} handleCalls={this.handleCalls} />
+                <PerformancePanel sales={sales.length} calls={this.props.calls} revenue={revenue} handleCalls={this.handleCalls} />
               </Row>
               <Row className="row-level-1">
                 <Col md={6}>

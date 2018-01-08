@@ -9,13 +9,46 @@ class AgentView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      conversion: 1
+      sales: new Array(0),
+      calls: 0,
+      conversion: 1,
+      userConfig: {}
     }
     
-    this.updateConversion = this.updateConversion.bind(this)
+    this.handleSales =  this.handleSales.bind(this)
+    this.handleCalls = this.handleCalls.bind(this)
+    this.handleConversion = this.handleConversion.bind(this)
   }
   
-  updateConversion(conversion) {
+  componentDidMount() {
+    /* TODO */
+  }
+  
+  componentWillUnmount() {
+    /* TODO */
+  }
+  
+  handleSales(sales) {
+    this.setState({
+      sales: sales
+    })
+    
+    this.handleConversion(sales.length, this.state.calls)
+  }
+  
+  handleCalls(calls) {
+    this.setState({
+      calls: calls
+    })
+    
+    this.handleConversion(this.state.sales.length, calls)
+  }
+  
+  handleConversion(s, c) {
+    let sales = parseInt(s, 10)
+    let calls = parseInt(c, 10)
+    let conversion = calls === 0 ? 1 : (sales / calls)
+    
     this.setState({
       conversion: conversion
     })
@@ -44,7 +77,7 @@ class AgentView extends Component {
         <Row>
           <Tabs className="tabs" defaultActiveKey={1} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
-              <Calculator conversion={this.state.conversion} updateConversion={this.updateConversion} />
+              <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} handleSales={this.handleSales} handleCalls={this.handleCalls} />
             </Tab>
             <Tab eventKey={2} title="Configuration">
             </Tab>
