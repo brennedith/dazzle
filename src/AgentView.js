@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Grid, Row, Col, Badge } from 'react-bootstrap'
 
 /* import modules and components */
 import StaminaBar from './modules/components/StaminaBar'
@@ -23,18 +23,21 @@ class AgentView extends Component {
   
   render() {
     let conversion = this.state.conversion * 100
-
+    
+    let statusClass = conversion >= 40 ? 'success' :
+                      conversion >= 30 ? 'warning' : 'danger'
+    
     return (
       <Grid fluid>
         <Row>
-          <StaminaBar now={conversion} />
+          <StaminaBar now={conversion} bsStyle={statusClass} />
         </Row>
         <Row>
           <Col md={8}>
             <h1>Dazzle</h1>
           </Col>
           <Col md={4}>
-            <h2>Conversion { conversion.toFixed(2) }%</h2>
+            <h2>Conversion <Badge className={`alert-${statusClass}`}>{ conversion.toFixed(2) }%</Badge></h2>
           </Col>
         </Row>
         <hr />
