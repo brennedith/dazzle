@@ -28,8 +28,6 @@ class AgentView extends Component {
   componentDidMount() {
     let lastUse = parseInt(localStorage.getItem('lastUse'), 10)
     
-    
-    console.log(this.today, lastUse)
     if(this.today === lastUse) {
       let dazzle = JSON.parse(localStorage.getItem('dazzle'))
       this.setState(dazzle)
