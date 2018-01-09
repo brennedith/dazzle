@@ -81,21 +81,21 @@ class SalesPanel extends Component {
         <Panel.Body>
           <Grid fluid>
             <Row>
-              <Col md={4}>
+              <Col md={4} sm={4} xs={4}>
                 <InputGroup bsSize="sm">
-                  <InputGroup.Addon>Sale no.</InputGroup.Addon>
+                  <InputGroup.Addon>Number</InputGroup.Addon>
                   <FormControl componentClass="span">
                     { this.props.sales.length + 1 }
                   </FormControl>
                 </InputGroup>
               </Col>
-              <Col md={6}>
+              <Col md={6} sm={6} xs={8}>
                 <InputGroup bsSize="sm">
-                  <InputGroup.Addon>Revenue</InputGroup.Addon>
+                  <InputGroup.Addon className="hidden-sm, hidden-">Revenue</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.state.revenue} onChange={this.updateRevenue} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
-              <Col md={2}>
+              <Col md={2} sm={2} xsHidden>
                 <Button bsStyle="success" bsSize="sm" onClick={this.addSale}>
                   <Glyphicon glyph="plus" />
                 </Button>

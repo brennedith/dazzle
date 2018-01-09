@@ -35,7 +35,9 @@ class Calculator extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Alert>{ this.state.alert }</Alert>
+          <Col smHidden xsHidden>
+            <Alert>{ this.state.alert }</Alert>
+          </Col>
         </Row>
         <Row className="row-level-1">
           <Col md={8}>
@@ -44,10 +46,10 @@ class Calculator extends Component {
                 <PerformancePanel sales={sales.length} calls={this.props.calls} revenue={revenue} handleCalls={this.handleCalls} />
               </Row>
               <Row className="row-level-1">
-                <Col md={6}>
+                <Col md={6} smHidden xsHidden>
                   <IncentivesPanel level="two" tenure="below60" conversion={this.props.conversion} revenue={revenue} />
                 </Col>
-                <Col md={6}>
+                <Col md={6} smHidden xsHidden>
                   <StopwatchsPanel />
                 </Col>
               </Row>

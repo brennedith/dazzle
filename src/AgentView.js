@@ -89,11 +89,11 @@ class AgentView extends Component {
           <StaminaBar now={conversion} bsStyle={statusClass} />
         </Row>
         <Row>
-          <Col md={8}>
+          <Col md={8} smHidden xsHidden>
             <h1>Dazzle</h1>
           </Col>
           <Col md={4}>
-            <h2>Conversion <Badge className={`alert-${statusClass}`}>{ conversion.toFixed(2) }%</Badge></h2>
+            <h2 className="center">Conversion <Badge className={`alert-${statusClass}`}>{ conversion.toFixed(2) }%</Badge></h2>
           </Col>
         </Row>
         <hr />

@@ -35,7 +35,7 @@ class PerformancePanel extends Component {
         <Panel.Body>
           <Grid fluid>
             <Row>
-              <Col md={3}>
+              <Col md={3} sm={6} xs={6}>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Sales</InputGroup.Addon>
                   <FormControl componentClass="span">
@@ -43,13 +43,13 @@ class PerformancePanel extends Component {
                   </FormControl>
                 </InputGroup>
               </Col>
-              <Col md={3}>
+              <Col md={3} sm={6} xs={6}>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Calls</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.calls} onChange={this.handleCalls} />
                 </InputGroup>
               </Col>
-              <Col md={3}>
+              <Col md={3} smHidden xsHidden>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Revenue</InputGroup.Addon>
                   <FormControl componentClass="span">
@@ -57,7 +57,7 @@ class PerformancePanel extends Component {
                   </FormControl>
                 </InputGroup>
               </Col>
-              <Col md={3}>
+              <Col md={3} smHidden xsHidden>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>AOV</InputGroup.Addon>
                   <FormControl componentClass="span">
@@ -68,7 +68,7 @@ class PerformancePanel extends Component {
             </Row>
           </Grid>
         </Panel.Body>
-        <Panel.Footer>
+        <Panel.Footer className="hidden-sm, hidden-xs">
           <Glyphicon glyph="info-sign" onClick={this.updateQuote} />
           &nbsp;
           { this.state.quote }
