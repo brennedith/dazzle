@@ -15,7 +15,7 @@ class AgentView extends Component {
       calls: 0,
       conversion: 1,
       level: 'two',
-    tenure: 'above60',
+      tenure: 'above60',
       theme: 'Flatly'
     }
     
@@ -102,7 +102,7 @@ class AgentView extends Component {
         </Row>
         <hr />
         <Row>
-          <Tabs className="tabs" defaultActiveKey={2} animation={false} id="tabs">
+          <Tabs className="tabs" defaultActiveKey={3} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
               <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} level={this.state.level} tenure={this.state.tenure} handleSales={this.handleSales} handleCalls={this.handleCalls} />
             </Tab>
