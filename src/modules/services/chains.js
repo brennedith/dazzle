@@ -1,4 +1,5 @@
 export default [
+  {name: 'Most popular', hotels: ['Comfort Inn', 'Hampton Inn', 'Hilton', 'Marriott', 'Holiday Inn', 'Courtyard', 'Super 8', 'Motel 6', 'Days Inn', 'Fairfield Inn', 'Country Inn', 'Best Western', 'Quality Inn']},
   {name: 'AccorHotels', hotels: ['Mercure', 'Novotel', 'Sofitel', 'Fairmont']},
   {name: 'AmericInn', hotels: ['AmericInn']},
   {name: 'Best Western Hotels', hotels: ['Best Western', 'Best Western Plus']},

@@ -23,6 +23,7 @@ class LocationsPanel extends Component {
   render() {
     
   let locations = null
+  let lettersMenu = null
   
   if(this.props.view === '') {
     
@@ -58,7 +59,11 @@ class LocationsPanel extends Component {
       
       return true
     })
-
+    
+    lettersMenu = Object.keys(citiesByLetter).map((letter, key) => (
+      <a href={`#${letter}`}>{letter}</a>
+    ))
+    
     locations = Object.keys(citiesByLetter).map((letter, key) => {
       
       let cities = citiesByLetter[letter].map((city, key) => (
@@ -67,7 +72,9 @@ class LocationsPanel extends Component {
       
       return (
         <p className="locations" key={key}>
-          <strong>{ letter } </strong>
+          <strong>
+            <a name={letter}>{ letter } </a>
+          </strong>
           { cities }
         </p>
       )
@@ -84,6 +91,10 @@ class LocationsPanel extends Component {
         { this.props.view !== '' &&
           <div>
             <Button bsStyle="warning" data-view="" onClick={this.handleView}>Go back</Button>
+            <hr />
+            <p className="locations">
+              { lettersMenu }
+            </p>
             <hr />
           </div>
         }
