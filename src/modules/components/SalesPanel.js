@@ -6,8 +6,7 @@ class SalesPanel extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      revenue: '',
-      sales: this.props.sales
+      revenue: ''
     }
     
     this.handleKeyPress = this.handleKeyPress.bind(this)
@@ -34,36 +33,27 @@ class SalesPanel extends Component {
       return
     }
     
-    let sales = this.state.sales
+    let sales = this.props.sales
     sales.push(parseFloat(this.state.revenue))
     
     this.setState({
-      sales: sales,
       revenue: ''
     })
     
-    this.handleSales()
+    this.props.handleSales(sales)
   }
   
   removeSale(e) {
     let idx = e.target.dataset.idx
-    let sales = this.state.sales
+    let sales = this.props.sales
     sales.splice(idx, 1)
     
-    this.setState({
-      sales: sales
-    })
-    
-    this.handleSales()
-  }
-
-  handleSales() {
-    this.props.handleSales(this.state.sales)
+    this.props.handleSales(sales)
   }
   
   render() {
     
-    let sales = this.state.sales.map((sale, idx) => (
+    let sales = this.props.sales.map((sale, idx) => (
       <tr key={idx}>
         <td>{ idx + 1 }</td>
         <td>{ `$ ${ sale.toFixed(2)}` }</td>
