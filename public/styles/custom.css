@@ -1,3 +1,8 @@
+/* Sets a minimum width for the #root element */
+#root {
+  min-width: 350px;
+}
+
 /* Centers text */
 .center {
   text-align: center;
