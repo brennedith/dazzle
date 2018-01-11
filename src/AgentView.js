@@ -15,7 +15,7 @@ class AgentView extends Component {
       calls: 0,
       conversion: 1,
       level: 'two',
-      tenure: 'above60',
+    tenure: 'above60',
       theme: 'Flatly'
     }
     
@@ -24,6 +24,7 @@ class AgentView extends Component {
     this.handleSales =  this.handleSales.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
     this.handleTheme = this.handleTheme.bind(this)
+    this.handleTenure =  this.handleTenure.bind(this)
   }
   
   componentDidMount() {
@@ -72,17 +73,21 @@ class AgentView extends Component {
     })
   }
   
+  handleTenure(tenure) {
+    this.setState({
+      tenure: tenure
+    })
+  }
+  
   render() {
     let conversion = this.state.conversion * 100
     
     let statusClass = conversion >= 40 ? 'success' :
                       conversion >= 30 ? 'warning' : 'danger'
-
+    console.log(this.state.tenure)
     return (
       <Grid fluid>
-        { this.state.theme !== 'Default' &&
-          <link rel="stylesheet" href={ `/styles/themes/${this.state.theme}.css` }/>
-        }
+        <link rel="stylesheet" href={ `/styles/themes/${this.state.theme}.css` }/>
         <link rel="stylesheet" href="/styles/custom.css" />
         <Row>
           <StaminaBar now={conversion} bsStyle={statusClass} />
@@ -105,7 +110,7 @@ class AgentView extends Component {
               <FindHotel />
             </Tab>
             <Tab eventKey={3} title="About">
-              <About theme={this.state.theme} handleTheme={this.handleTheme} />
+              <About theme={this.state.theme} tenure={this.state.tenure} handleTheme={this.handleTheme} handleTenure={this.handleTenure}/>
             </Tab>
           </Tabs>
         </Row>

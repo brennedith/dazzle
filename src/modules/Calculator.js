@@ -47,7 +47,7 @@ class Calculator extends Component {
               </Row>
               <Row className="row-level-1">
                 <Col md={6} smHidden xsHidden>
-                  <IncentivesPanel level="two" tenure="below60" conversion={this.props.conversion} revenue={revenue} />
+                  <IncentivesPanel level="two" tenure={this.props.tenure} conversion={this.props.conversion} revenue={revenue} />
                 </Col>
                 <Col md={6} smHidden xsHidden>
                   <StopwatchsPanel />
