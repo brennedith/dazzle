@@ -31,7 +31,7 @@ class HotelsList extends Component {
     })
     
     return (
-      <Panel>
+      <Panel className="find-hotel-panel">
         <Panel.Heading>
           <Glyphicon glyph="bed" /> Hotels
         </Panel.Heading>

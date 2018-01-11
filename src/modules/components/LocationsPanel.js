@@ -83,7 +83,7 @@ class LocationsPanel extends Component {
   }
 
     return (
-      <Panel>
+      <Panel className="find-hotel-panel">
         <Panel.Heading>
           <Glyphicon glyph="map-marker" /> Locations
         </Panel.Heading>

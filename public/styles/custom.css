@@ -42,6 +42,21 @@
   overflow-y: scroll;
 }
 
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.3em;
+  }
+  
+  .panel-body {
+    max-height: 300px;
+  }
+  
+  .find-hotel-panel {
+    max-height: 200px;
+    overflow-y: hidden;
+  }
+}
+
 /* Adds a comma to each hotel name but the last one of the chain */
 
 .hotels, .locations {
