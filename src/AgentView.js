@@ -4,6 +4,7 @@ import { Grid, Row, Col, Badge, Tabs, Tab } from 'react-bootstrap'
 /* import modules and components */
 import StaminaBar from './modules/components/StaminaBar'
 import Calculator from './modules/Calculator'
+import FindHotel from './modules/FindHotel'
 import About from './modules/About'
 
 class AgentView extends Component {
@@ -96,11 +97,14 @@ class AgentView extends Component {
         </Row>
         <hr />
         <Row>
-          <Tabs className="tabs" defaultActiveKey={1} animation={false} id="tabs">
+          <Tabs className="tabs" defaultActiveKey={2} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
               <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} level={this.state.level} tenure={this.state.tenure} handleSales={this.handleSales} handleCalls={this.handleCalls} />
             </Tab>
-            <Tab eventKey={2} title="About">
+            <Tab eventKey={2} title="Hotels">
+              <FindHotel />
+            </Tab>
+            <Tab eventKey={3} title="About">
               <About theme={this.state.theme} handleTheme={this.handleTheme} />
             </Tab>
           </Tabs>

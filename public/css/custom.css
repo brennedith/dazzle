@@ -30,3 +30,14 @@
 .table {
   margin-bottom: 0;
 }
+
+/* Adds a comma to each hotel name but the last one of the chain */
+
+.hotels, .locations {
+  line-height: 1.7em;
+}
+
+.hotels > a:not(:last-child)::after,
+.locations > a:not(:last-child)::after {
+  content: ',   ';
+}
