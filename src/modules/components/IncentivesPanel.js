@@ -15,16 +15,16 @@ function IncentivesPanel (props) {
             <Col md={6}>
               <InputGroup bsSize="sm">
                 <InputGroup.Addon>Actual</InputGroup.Addon>
-                <FormControl componentClass="span">$ { (props.revenue * bonus.current).toFixed(2) }</FormControl>
+                <FormControl componentClass="span">${ (props.revenue * bonus.current).toFixed(2) }</FormControl>
               </InputGroup>
             </Col>
             <Col md={6}>
               <OverlayTrigger placement="top" overlay={
-                <Tooltip id="max">Max: $ { (props.revenue * bonus.max).toFixed(2) }</Tooltip>
+                <Tooltip id="max">Max: ${ (props.revenue * bonus.max).toFixed(2) }</Tooltip>
               }>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Next</InputGroup.Addon>
-                  <FormControl componentClass="span">$ { (props.revenue * bonus.next).toFixed(2) }</FormControl>
+                  <FormControl componentClass="span">${ (props.revenue * bonus.next).toFixed(2) }</FormControl>
                 </InputGroup>
               </OverlayTrigger>
             </Col>

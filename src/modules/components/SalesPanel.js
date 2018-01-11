@@ -56,7 +56,7 @@ class SalesPanel extends Component {
     let sales = this.props.sales.map((sale, idx) => (
       <tr key={idx}>
         <td>{ idx + 1 }</td>
-        <td>{ `$ ${ sale.toFixed(2)}` }</td>
+        <td>{ `$${ sale.toFixed(2)}` }</td>
         <td>
           <Button bsStyle="danger" bsSize="xs" data-idx={idx} onClick={this.removeSale}>
             <Glyphicon glyph="trash" />

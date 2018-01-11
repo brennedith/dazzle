@@ -53,7 +53,7 @@ class PerformancePanel extends Component {
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Revenue</InputGroup.Addon>
                   <FormControl componentClass="span">
-                    { `$ ${this.props.revenue.toFixed(2)}` }
+                    { `$${this.props.revenue.toFixed(2)}` }
                   </FormControl>
                 </InputGroup>
               </Col>
@@ -61,7 +61,7 @@ class PerformancePanel extends Component {
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>AOV</InputGroup.Addon>
                   <FormControl componentClass="span">
-                    { `$ ${aov.toFixed(2)}` }
+                    { `$${aov.toFixed(2)}` }
                   </FormControl>
                 </InputGroup>
               </Col>
