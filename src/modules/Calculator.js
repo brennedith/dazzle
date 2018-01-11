@@ -34,9 +34,9 @@ class Calculator extends Component {
 
     return (
       <Grid fluid>
+        <br />
         <Row>
           <Col smHidden xsHidden>
-            <br />
             <Alert>{ this.state.alert }</Alert>
           </Col>
         </Row>
