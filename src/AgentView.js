@@ -16,7 +16,7 @@ class AgentView extends Component {
       conversion: 1,
       level: 'two',
       tenure: 'above60',
-      theme: 'Flatly'
+      theme: 'United'
     }
     
     this.today = Math.floor((new Date()).getTime() / 1000 / 60 / 60 / 24)
