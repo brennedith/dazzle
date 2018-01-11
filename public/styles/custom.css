@@ -31,6 +31,12 @@
   margin-bottom: 0;
 }
 
+/* Adds max-height to the Panel Body */
+.panel-body {
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
 /* Adds a comma to each hotel name but the last one of the chain */
 
 .hotels, .locations {

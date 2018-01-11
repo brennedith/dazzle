@@ -81,9 +81,9 @@ class AgentView extends Component {
     return (
       <Grid fluid>
         { this.state.theme !== 'Default' &&
-          <link rel="stylesheet" href={ `https://bootswatch.com/3/${this.state.theme.toLowerCase()}/bootstrap.min.css` }/>
+          <link rel="stylesheet" href={ `/styles/themes/${this.state.theme}.css` }/>
         }
-        <link rel="stylesheet" href="/css/custom.css" />
+        <link rel="stylesheet" href="/styles/custom.css" />
         <Row>
           <StaminaBar now={conversion} bsStyle={statusClass} />
         </Row>
