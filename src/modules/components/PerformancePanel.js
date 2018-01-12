@@ -28,7 +28,7 @@ class PerformancePanel extends Component {
   }
   
   addCall() {
-    this.props.handleCalls(this.props.calls + 1)
+    this.props.handleCalls(parseInt(this.props.calls,10) + 1)
   }
   
   render() {
