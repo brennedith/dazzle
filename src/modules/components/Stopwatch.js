@@ -35,7 +35,7 @@ class Stopwatch extends Component {
   }
   
   stopStopwatch() {
-    if(this.status) {
+    if(this.state.status) {
       this.toggleStopwatch()
     }
     this.setState({

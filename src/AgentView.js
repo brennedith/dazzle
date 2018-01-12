@@ -84,7 +84,7 @@ class AgentView extends Component {
     
     let statusClass = conversion >= 40 ? 'success' :
                       conversion >= 30 ? 'warning' : 'danger'
-    console.log(this.state.tenure)
+    
     return (
       <Grid fluid>
         <link rel="stylesheet" href={ `/styles/themes/${this.state.theme}.css` }/>
