@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Panel, FormControl, InputGroup, Glyphicon } from 'react-bootstrap'
+import { Grid, Row, Col, Panel, FormControl, InputGroup, Button, Glyphicon } from 'react-bootstrap'
 
 import QuotesService from '../services/quotes'
 
@@ -14,6 +14,7 @@ class PerformancePanel extends Component {
     
     this.updateQuote = this.updateQuote.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
+    this.addCall = this.addCall.bind(this)
   }
   
   updateQuote() {
@@ -24,6 +25,10 @@ class PerformancePanel extends Component {
   
   handleCalls(e) {
     this.props.handleCalls(e.target.value)
+  }
+  
+  addCall() {
+    this.props.handleCalls(this.props.calls + 1)
   }
   
   render() {
@@ -47,6 +52,11 @@ class PerformancePanel extends Component {
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon>Calls</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.calls} onChange={this.handleCalls} />
+                  <InputGroup.Button>
+                    <Button bsStyle="primary" onClick={this.addCall}>
+                      <Glyphicon glyph="plus" />
+                    </Button>
+                  </InputGroup.Button>
                 </InputGroup>
               </Col>
               <Col md={3} smHidden xsHidden>
