@@ -37,8 +37,8 @@
 }
 
 /* Adds max-height to the Panel Body */
-.panel-body {
-  max-height: 350px;
+.panel-body-scroll {
+  max-height: 300px;
   overflow-y: scroll;
 }
 
@@ -46,11 +46,7 @@
   h1 {
     font-size: 1.3em;
   }
-  
-  .panel-body {
-    max-height: 300px;
-  }
-  
+
   .find-hotel-panel {
     max-height: 200px;
     overflow-y: hidden;

@@ -68,7 +68,7 @@ class SalesPanel extends Component {
     return (
       <Panel>
         <Panel.Heading>Sales</Panel.Heading>
-        <Panel.Body>
+        <Panel.Body className="panel-body-scroll">
           <Grid fluid>
             <Row>
               <Col md={4} sm={4} xs={4}>

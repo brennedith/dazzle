@@ -83,11 +83,11 @@ class LocationsPanel extends Component {
   }
 
     return (
-      <Panel className="find-hotel-panel">
+      <Panel>
         <Panel.Heading>
           <Glyphicon glyph="map-marker" /> Locations
         </Panel.Heading>
-        <Panel.Body>
+        <Panel.Body className="panel-body-scroll find-hotel-panel">
         { this.props.view !== '' &&
           <div>
             <Button bsStyle="warning" data-view="" onClick={this.handleView}>Go back</Button>
