@@ -43,10 +43,9 @@ class SalesPanel extends Component {
     this.props.handleSales(sales)
   }
   
-  removeSale(e) {
-    let idx = e.target.dataset.idx
+  removeSale(index) {
     let sales = this.props.sales
-    sales.splice(idx, 1)
+    sales.splice(index, 1)
     
     this.props.handleSales(sales)
   }
@@ -58,7 +57,7 @@ class SalesPanel extends Component {
         <td>{ idx + 1 }</td>
         <td>{ `$${ sale.toFixed(2)}` }</td>
         <td>
-          <Button bsStyle="danger" bsSize="xs" data-idx={idx} onClick={this.removeSale}>
+          <Button bsStyle="danger" bsSize="xs" onClick={() => this.removeSale(idx)}>
             <Glyphicon glyph="trash" />
           </Button>
         </td>
