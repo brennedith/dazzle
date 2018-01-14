@@ -23,7 +23,7 @@
 .badge {
   font-weight: inherit;
   font-size: inherit;
-  color: #FFF;
+  color: inherit;
 }
 
 /* Fixes tabs margin */
