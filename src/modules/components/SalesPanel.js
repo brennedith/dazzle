@@ -90,7 +90,7 @@ class SalesPanel extends Component {
               </Col>
               <Col md={6} sm={6} xs={8}>
                 <InputGroup bsSize="sm">
-                  <InputGroup.Addon className="hidden-sm, hidden-xs">Revenue</InputGroup.Addon>
+                  <InputGroup.Addon className="hidden-sm hidden-xs">Revenue</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.state.revenue}
                   onChange={this.updateRevenue} onKeyPress={this.handleKeyPress} />
                 </InputGroup>
