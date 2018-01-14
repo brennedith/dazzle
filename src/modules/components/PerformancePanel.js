@@ -6,6 +6,7 @@ import QuotesService from '../services/quotes'
 class PerformancePanel extends Component {
   
   constructor(props) {
+    
     super(props)
     
     this.state = {
@@ -13,26 +14,34 @@ class PerformancePanel extends Component {
     }
     
     this.updateQuote = this.updateQuote.bind(this)
-    this.handleCalls = this.handleCalls.bind(this)
     this.addCall = this.addCall.bind(this)
+    this.handleCalls = this.handleCalls.bind(this)
+    
   }
   
   updateQuote() {
+    
     this.setState({
       quote: QuotesService.random()
     })
-  }
-  
-  handleCalls(e) {
-    this.props.handleCalls(e.target.value)
+    
   }
   
   addCall() {
+    
     this.props.handleCalls(parseInt(this.props.calls,10) + 1)
+    
+  }
+  
+  handleCalls(e) {
+    
+    this.props.handleCalls(e.target.value)
+    
   }
   
   render() {
-    let aov = ( this.props.revenue / this.props.sales ) || 0
+    
+    let aov = (this.props.revenue / this.props.sales) || 0
     
     return (
       <Panel>
@@ -85,7 +94,9 @@ class PerformancePanel extends Component {
         </Panel.Footer>
       </Panel>
     )
+    
   }
+  
 }
 
 export default PerformancePanel

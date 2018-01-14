@@ -6,18 +6,24 @@ import Cities from '../services/cities.js'
 class LocationsPanel extends Component {
   
   constructor(props) {
+    
     super(props)
     
     this.handleLocation = this.handleLocation.bind(this)
     this.handleView = this.handleView.bind(this)
+    
   }
   
-  handleLocation(e) {
-    this.props.handleLocation(e.target.dataset.location)
+  handleLocation(location) {
+    
+    this.props.handleLocation(location)
+    
   }
 
-  handleView(e) {
-    this.props.handleView(e.target.dataset.view)
+  handleView(view) {
+    
+    this.props.handleView(view)
+    
   }
   
   render() {
@@ -32,7 +38,7 @@ class LocationsPanel extends Component {
       let statesObj = Cities[country].states
       
       let states = Object.keys(statesObj).map((state, idx) => (
-        <a key={idx} href={`#${state}`} data-view={`${state}|${country}`} onClick={this.handleView}>{ statesObj[state].name }</a>
+        <a key={idx} href="#state" onClick={() => this.handleView(`${state}|${country}`)}>{ statesObj[state].name }</a>
       ))
       
       return (
@@ -48,6 +54,7 @@ class LocationsPanel extends Component {
     let [ state, country ] = this.props.view.split('|')
     let cities = Cities[country].states[state].cities
     let citiesByLetter = []
+    
     cities.map(city => {
       let letter = city.substring(0,1)
       
@@ -60,28 +67,29 @@ class LocationsPanel extends Component {
       return true
     })
     
-    lettersMenu = Object.keys(citiesByLetter).map((letter, key) => (
+    lettersMenu = Object.keys(citiesByLetter).map((letter, idx) => (
       <a href={`#${letter}`}>{letter}</a>
     ))
     
-    locations = Object.keys(citiesByLetter).map((letter, key) => {
+    locations = Object.keys(citiesByLetter).map((letter, idx) => {
       
-      let cities = citiesByLetter[letter].map((city, key) => (
-        <a key={key} href={`#${city}`} data-location={`${city}, ${state}`} onClick={this.handleLocation}>{ city }</a>
+      let cities = citiesByLetter[letter].map((city, idx) => (
+        <a key={idx} href="#city" onClick={() => this.handleLocation(`${city}, ${state}`)}>{ city }</a>
       ))
       
       return (
-        <p className="locations" key={key}>
+        <p className="locations" key={idx}>
           <strong>
             <a name={letter}>{ letter } </a>
           </strong>
           { cities }
         </p>
       )
+      
     })
     
   }
-
+  
     return (
       <Panel>
         <Panel.Heading>
@@ -90,7 +98,7 @@ class LocationsPanel extends Component {
         <Panel.Body className="panel-body-scroll find-hotel-panel">
         { this.props.view !== '' &&
           <div>
-            <Button bsStyle="warning" data-view="" onClick={this.handleView}>Go back</Button>
+            <Button bsStyle="warning" onClick={() => this.handleView('')}>Go back</Button>
             <hr />
             <p className="locations">
               { lettersMenu }
@@ -102,7 +110,9 @@ class LocationsPanel extends Component {
         </Panel.Body>
       </Panel>
     )
+    
   }
+  
 }
 
 export default LocationsPanel

@@ -3,7 +3,8 @@ import { Grid, Row, Col, Panel } from 'react-bootstrap'
 
 import Stopwatch from './Stopwatch'
 
-function StopwatchsPanel(props) {
+function StopwatchsPanel (props) {
+  
   return (
     <Panel>
       <Panel.Heading>Stopwatch</Panel.Heading>
@@ -21,6 +22,7 @@ function StopwatchsPanel(props) {
       </Panel.Body>
     </Panel>
   )
+  
 }
 
 export default StopwatchsPanel

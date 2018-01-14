@@ -4,7 +4,9 @@ import { Grid, Row, Col, Panel, FormControl, InputGroup, Button, Table, Glyphico
 class SalesPanel extends Component {
   
   constructor(props) {
+    
     super(props)
+    
     this.state = {
       revenue: ''
     }
@@ -13,22 +15,19 @@ class SalesPanel extends Component {
     this.updateRevenue = this.updateRevenue.bind(this)
     this.addSale = this.addSale.bind(this)
     this.removeSale = this.removeSale.bind(this)
-  }
-
-  handleKeyPress(e) {
-    if(e.charCode === 13) {
-      this.addSale()
-    }
-    return
+    
   }
 
   updateRevenue(e) {
+    
     this.setState({
       revenue: e.target.value
     })
+    
   }
   
   addSale() {
+    
     if(this.state.revenue === '' || this.state.revenue === 0) {
       return
     }
@@ -41,23 +40,34 @@ class SalesPanel extends Component {
     })
     
     this.props.handleSales(sales)
+    
   }
   
   removeSale(index) {
+    
     let sales = this.props.sales
     sales.splice(index, 1)
     
     this.props.handleSales(sales)
+    
+  }
+
+  handleKeyPress(e) {
+    
+    if(e.charCode === 13) {
+      this.addSale()
+    }
+    
   }
   
   render() {
     
-    let sales = this.props.sales.map((sale, idx) => (
-      <tr key={idx}>
-        <td>{ idx + 1 }</td>
+    let salesList = this.props.sales.map((sale, index) => (
+      <tr key={index}>
+        <td>{ index + 1 }</td>
         <td>{ `$${ sale.toFixed(2)}` }</td>
         <td>
-          <Button bsStyle="danger" bsSize="xs" onClick={() => this.removeSale(idx)}>
+          <Button bsStyle="danger" bsSize="xs" onClick={() => this.removeSale(index)}>
             <Glyphicon glyph="trash" />
           </Button>
         </td>
@@ -81,7 +91,8 @@ class SalesPanel extends Component {
               <Col md={6} sm={6} xs={8}>
                 <InputGroup bsSize="sm">
                   <InputGroup.Addon className="hidden-sm, hidden-xs">Revenue</InputGroup.Addon>
-                  <FormControl type="number" min="0" value={this.state.revenue} onChange={this.updateRevenue} onKeyPress={this.handleKeyPress}></FormControl>
+                  <FormControl type="number" min="0" value={this.state.revenue}
+                  onChange={this.updateRevenue} onKeyPress={this.handleKeyPress} />
                 </InputGroup>
               </Col>
               <Col md={2} sm={2} xsHidden>
@@ -101,7 +112,7 @@ class SalesPanel extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    { sales }
+                    { salesList }
                   </tbody>
                 </Table>
             </Row>
@@ -109,7 +120,9 @@ class SalesPanel extends Component {
         </Panel.Body>
       </Panel>
     )
+    
   }
+  
 }
 
 export default SalesPanel

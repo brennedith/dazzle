@@ -4,6 +4,7 @@ import { Grid, Row, Col, Panel, FormControl, InputGroup, Tooltip, OverlayTrigger
 import BonusService from '../services/bonus'
 
 function IncentivesPanel (props) {
+  
   let bonus = BonusService.calc(props.level, props.tenure, props.conversion)
   
   return (
@@ -33,6 +34,7 @@ function IncentivesPanel (props) {
       </Panel.Body>
     </Panel>
   )
+  
 }
 
 export default IncentivesPanel

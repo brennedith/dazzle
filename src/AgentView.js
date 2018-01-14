@@ -8,78 +8,93 @@ import FindHotel from './modules/FindHotel'
 import About from './modules/About'
 
 class AgentView extends Component {
+  
   constructor(props) {
+    
     super(props)
+    
     this.state = {
-      sales: new Array(0),
+      sales: [],
       calls: 0,
       conversion: 1,
       level: 'two',
       tenure: 'above60',
-      theme: 'United'
+      message: 'Hard work beats talent when talent doesn’t work hard.- Tim Notke',
+      theme: 'United',
     }
     
     this.today = Math.floor((new Date()).getTime() / 1000 / 60 / 60 / 24)
+    this.lastUse = parseInt(localStorage.getItem('lastUse'), 10) || 0
     
     this.handleSales =  this.handleSales.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
     this.handleTheme = this.handleTheme.bind(this)
     this.handleTenure =  this.handleTenure.bind(this)
+    
   }
   
-  componentDidMount() {
-    let lastUse = parseInt(localStorage.getItem('lastUse'), 10)
+  componentWillMount() {
     
-    if(this.today === lastUse) {
+    if(this.today === this.lastUse) {
       let dazzle = JSON.parse(localStorage.getItem('dazzle'))
       this.setState(dazzle)
     }
+    
   }
   
   componentDidUpdate() {
+    
     localStorage.setItem('lastUse', this.today)
     localStorage.setItem('dazzle', JSON.stringify(this.state))
+    
   }
   
   handleSales(sales) {
+    
     this.setState({
       sales: sales
-    })
+    }, this.handleConversion)
     
-    this.handleConversion(sales.length, this.state.calls)
   }
   
   handleCalls(calls) {
+    
     this.setState({
       calls: calls
-    })
-    
-    this.handleConversion(this.state.sales.length, calls)
+    }, this.handleConversion)
+
   }
   
-  handleConversion(s, c) {
-    let sales = parseInt(s, 10)
-    let calls = parseInt(c, 10)
+  handleConversion() {
+    
+    let sales = parseInt(this.state.sales.length, 10)
+    let calls = parseInt(this.state.calls, 10)
     let conversion = calls === 0 ? 1 : (sales / calls)
     
     this.setState({
       conversion: conversion
     })
+    
   }
   
   handleTheme(theme) {
+    
     this.setState({
       theme: theme
     })
+    
   }
   
   handleTenure(tenure) {
+    
     this.setState({
       tenure: tenure
     })
+    
   }
   
   render() {
+    
     let conversion = this.state.conversion * 100
     
     let statusClass = conversion >= 40 ? 'success' :
@@ -104,19 +119,33 @@ class AgentView extends Component {
         <Row>
           <Tabs className="tabs" defaultActiveKey={3} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
-              <Calculator sales={this.state.sales} calls={this.state.calls} conversion={this.state.conversion} level={this.state.level} tenure={this.state.tenure} handleSales={this.handleSales} handleCalls={this.handleCalls} />
+              <Calculator
+                sales={this.state.sales}
+                calls={this.state.calls}
+                conversion={this.state.conversion}
+                level={this.state.level}
+                tenure={this.state.tenure}
+                message={this.state.message}
+                handleSales={this.handleSales}
+                handleCalls={this.handleCalls} />
             </Tab>
             <Tab eventKey={2} title="Hotels">
               <FindHotel />
             </Tab>
             <Tab eventKey={3} title="About">
-              <About theme={this.state.theme} tenure={this.state.tenure} handleTheme={this.handleTheme} handleTenure={this.handleTenure}/>
+              <About
+                tenure={this.state.tenure}
+                theme={this.state.theme}
+                handleTenure={this.handleTenure}
+                handleTheme={this.handleTheme} />
             </Tab>
           </Tabs>
         </Row>
       </Grid>
     )
+    
   }
+  
 }
 
 export default AgentView

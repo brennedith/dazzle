@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { FormGroup, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap'
 
 class About extends Component {
+  
   constructor(props) {
+    
     super(props)
     
     this.state = {
@@ -11,14 +13,19 @@ class About extends Component {
     
     this.handleTheme = this.handleTheme.bind(this)
     this.handleTenure = this.handleTenure.bind(this)
+    
   }
   
   handleTheme(e) {
+    
     this.props.handleTheme(e.target.dataset.theme)
+    
   }
   
   handleTenure(e) {
+    
     this.props.handleTenure(e.target.dataset.tenure)
+    
   }
   
   render() {
@@ -51,6 +58,7 @@ class About extends Component {
           </FormGroup>
       </div>
     )
+    
   }
   
 }

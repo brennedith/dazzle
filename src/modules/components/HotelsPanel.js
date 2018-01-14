@@ -3,23 +3,28 @@ import { Panel, Glyphicon } from 'react-bootstrap'
 
 import Chains from '../services/chains.js'
 
-class HotelsList extends Component {
+class HotelsPanel extends Component {
   
   constructor(props) {
+    
     super(props)
     
     this.handleHotel = this.handleHotel.bind(this)
+    
   }
 
-  handleHotel(e) {
-    this.props.handleHotel(e.target.dataset.hotel)
+  handleHotel(hotel) {
+    
+    this.props.handleHotel(hotel)
+    
   }
   
   render() {
+    
     let hotelsList = Chains.map((chain, idx) => {
       
       let hotels = chain.hotels.map((hotel, idx) => (
-        <a key={idx} href={`#${hotel}`} data-hotel={hotel} onClick={this.handleHotel}>{ hotel }</a>
+        <a key={idx} href="#hotel" onClick={() => this.handleHotel(hotel)}>{ hotel }</a>
       ))
       
       return (
@@ -28,6 +33,7 @@ class HotelsList extends Component {
           { hotels }
         </p>
       )
+      
     })
     
     return (
@@ -40,7 +46,9 @@ class HotelsList extends Component {
         </Panel.Body>
       </Panel>
     )
+    
   }
+  
 }
 
-export default HotelsList
+export default HotelsPanel

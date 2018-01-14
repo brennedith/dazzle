@@ -4,6 +4,7 @@ import { FormControl, InputGroup, Button, Glyphicon } from 'react-bootstrap'
 class Stopwatch extends Component {
   
   constructor(props) {
+    
     super(props)
     
     this.state = {
@@ -15,9 +16,11 @@ class Stopwatch extends Component {
     
     this.toggleStopwatch = this.toggleStopwatch.bind(this)
     this.stopStopwatch = this.stopStopwatch.bind(this)
+    
   }
 
   toggleStopwatch() {
+    
     if(!this.state.status) {
       this.timer = setInterval(() => this.setState(prevState => ({
         seconds: prevState.seconds + 1
@@ -32,15 +35,18 @@ class Stopwatch extends Component {
         status: !prevState.status
       }))
     }
+    
   }
   
   stopStopwatch() {
+    
     if(this.state.status) {
       this.toggleStopwatch()
     }
     this.setState({
       seconds: 0
     })
+    
   }
   
   render() {
@@ -77,7 +83,9 @@ class Stopwatch extends Component {
         </InputGroup.Button>
       </InputGroup>
     )
+    
   }
+  
 }
 
 export default Stopwatch

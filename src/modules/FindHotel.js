@@ -7,6 +7,7 @@ import LocationsPanel from './components/LocationsPanel.js'
 class FindHotel extends Component {
   
   constructor(props) {
+    
     super(props)
 
     this.state = {
@@ -15,42 +16,53 @@ class FindHotel extends Component {
       location: '#Location'
     }
 
+    this.handleView = this.handleView.bind(this)
     this.handleHotel = this.handleHotel.bind(this)
     this.handleLocation = this.handleLocation.bind(this)
-    this.handleView = this.handleView.bind(this)
     this.clearQuery = this.clearQuery.bind(this)
     this.openMap = this.openMap.bind(this)
-  }
-  
-  handleHotel(hotelName) {
-    this.setState({
-      hotel: hotelName
-    })
-  }
-  
-  handleLocation(location) {
-    this.setState({
-      location: location
-    })
+    
   }
   
   handleView(view) {
+    
     this.setState({
       view: view
     })
+    
+  }
+  
+  handleHotel(hotel) {
+    
+    this.setState({
+      hotel: hotel
+    })
+    
+  }
+  
+  handleLocation(location) {
+    
+    this.setState({
+      location: location
+    })
+    
   }
   
   clearQuery() {
+    
     this.setState({
       view: '',
       hotel: '#Hotel',
       location: '#Location'
     })
+    
   }
   
   openMap() {
+    
     let query = `https://www.google.com/maps/search/${this.state.hotel} ${this.state.location}`
     window.open(encodeURI(query))
+    
   }
   
   render() {
@@ -86,7 +98,9 @@ class FindHotel extends Component {
         </Row>
       </Grid>
     )
+    
   }
+  
 }
 
 export default FindHotel
