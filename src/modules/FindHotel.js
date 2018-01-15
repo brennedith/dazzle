@@ -80,7 +80,7 @@ class FindHotel extends Component {
         <Row>
           <h1 className="center">
             { link }
-            <span>   </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             { (!!this.state.hotel.indexOf('#') || !!this.state.location.indexOf('#')) &&
               <Button bsStyle="danger" bsSize="sm" onClick={this.clearQuery}>
                 <Glyphicon glyph="erase" />
