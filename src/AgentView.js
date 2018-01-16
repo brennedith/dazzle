@@ -17,7 +17,7 @@ class AgentView extends Component {
       sales: [],
       calls: 0,
       conversion: 1,
-      level: 'two',
+      level: 'three',
       tenure: 'above60',
       message: 'Hard work beats talent when talent doesn’t work hard.- Tim Notke',
       theme: 'United',
