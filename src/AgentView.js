@@ -19,7 +19,7 @@ class AgentView extends Component {
       conversion: 1,
       level: 'three',
       tenure: 'above60',
-      message: 'Hard work beats talent when talent doesn’t work hard.- Tim Notke',
+      message: 'Remember to use the sales process: Opening > Probing > Benefits > Offer > Close',
       theme: 'United',
     }
     
