@@ -67,9 +67,9 @@ class Stopwatch extends Component {
     let statusIcon = this.state.status ? 'pause' : 'play'
     
     return (
-      <InputGroup bsSize="sm">
+      <InputGroup bsSize="md">
         <InputGroup.Button>
-          <Button bsStyle="danger" bsSize="xs" onClick={this.stopStopwatch}>
+          <Button bsStyle="danger" onClick={this.stopStopwatch}>
             <Glyphicon glyph="stop" />
           </Button>
         </InputGroup.Button>
@@ -77,7 +77,7 @@ class Stopwatch extends Component {
           <strong>{ formatTime(this.state.seconds) }</strong>
         </FormControl>
         <InputGroup.Button>
-          <Button bsStyle={statusClass} bsSize="xs" onClick={this.toggleStopwatch}>
+          <Button bsStyle={statusClass} onClick={this.toggleStopwatch}>
             <Glyphicon glyph={statusIcon} />
           </Button>
         </InputGroup.Button>

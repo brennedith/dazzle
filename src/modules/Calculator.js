@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Alert } from 'react-bootstrap'
+import { Grid, Row, Col, Alert, Glyphicon } from 'react-bootstrap'
 
 /* Imports Panels */
 import PerformancePanel from './components/PerformancePanel'
 import IncentivesPanel from './components/IncentivesPanel'
 import StopwatchsPanel from './components/StopwatchsPanel'
 
+import QuotesService from './services/quotes'
+
 class Calculator extends Component {
+
+  constructor(props) {
+    
+    super(props)
+    
+    this.state = {
+      quote: QuotesService.random()
+    }
+    
+    this.updateQuote = this.updateQuote.bind(this)
+
+  }
+
+  updateQuote() {
+    
+    this.setState({
+      quote: QuotesService.random()
+    })
+    
+  }
 
   render() {
     
@@ -15,7 +37,11 @@ class Calculator extends Component {
         <br />
         <Row>
           <Col smHidden xsHidden>
-            <Alert>{ this.props.message }</Alert>
+            <Alert>
+              <Glyphicon glyph="info-sign" onClick={this.updateQuote} />
+              &nbsp;
+            { this.state.quote }
+            </Alert>
           </Col>
         </Row>
         <Row className="row-level-1">
