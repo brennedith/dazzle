@@ -3,7 +3,6 @@ import { Grid, Row, Col, Alert } from 'react-bootstrap'
 
 /* Imports Panels */
 import PerformancePanel from './components/PerformancePanel'
-import SalesPanel from './components/SalesPanel'
 import IncentivesPanel from './components/IncentivesPanel'
 import StopwatchsPanel from './components/StopwatchsPanel'
 
@@ -11,9 +10,6 @@ class Calculator extends Component {
 
   render() {
     
-    let sales = this.props.sales
-    let revenue = sales.length > 0 ? sales.reduce((total, value) => total + value ) : 0
-
     return (
       <Grid fluid>
         <br />
@@ -23,33 +19,21 @@ class Calculator extends Component {
           </Col>
         </Row>
         <Row className="row-level-1">
-          <Col md={8}>
-            <Grid fluid>
-              <Row>
-                <PerformancePanel
-                  sales={sales.length}
-                  calls={this.props.calls}
-                  revenue={revenue}
-                  handleCalls={this.props.handleCalls} />
-              </Row>
-              <Row className="row-level-1">
-                <Col md={6} smHidden xsHidden>
-                  <IncentivesPanel
-                    conversion={this.props.conversion}
-                    level={this.props.level}
-                    tenure={this.props.tenure}
-                    revenue={revenue} />
-                </Col>
-                <Col md={6} smHidden xsHidden>
-                  <StopwatchsPanel />
-                </Col>
-              </Row>
-            </Grid>
+          <Col md={6}>
+            <PerformancePanel
+              sales={this.props.sales}
+              calls={this.props.calls}
+              handleSales={this.props.handleSales}
+              handleCalls={this.props.handleCalls} />
           </Col>
-          <Col md={4}>
-            <SalesPanel
-              sales={sales}
-              handleSales={this.props.handleSales} />
+          <Col md={6}>
+              <StopwatchsPanel />
+          </Col>
+        </Row>
+        <Row className="row-level-1">
+          <Col mdOffset={2} md={8}>
+            <IncentivesPanel
+              sales={this.props.sales} />
           </Col>
         </Row>
       </Grid>

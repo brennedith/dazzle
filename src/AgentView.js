@@ -14,7 +14,7 @@ class AgentView extends Component {
     super(props)
     
     this.state = {
-      sales: [],
+      sales: 0,
       calls: 0,
       conversion: 1,
       level: 'three',
@@ -67,7 +67,7 @@ class AgentView extends Component {
   
   handleConversion() {
     
-    let sales = parseInt(this.state.sales.length, 10)
+    let sales = parseInt(this.state.sales, 10)
     let calls = parseInt(this.state.calls, 10)
     let conversion = calls === 0 ? 1 : (sales / calls)
     

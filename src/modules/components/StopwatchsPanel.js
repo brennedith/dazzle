@@ -11,10 +11,13 @@ function StopwatchsPanel (props) {
       <Panel.Body>
         <Grid fluid>
           <Row>
-            <Col md={6}>
+            <Col md={4}>
               <Stopwatch />
             </Col>
-            <Col md={6}>
+            <Col md={4}>
+              <Stopwatch />
+            </Col>
+            <Col md={4}>
               <Stopwatch />
             </Col>
           </Row>
