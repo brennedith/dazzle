@@ -42,12 +42,12 @@ class PerformancePanel extends Component {
         
     return (
       <Panel>
-        <Panel.Heading>Performance</Panel.Heading>
+        <Panel.Heading>Today's Performance</Panel.Heading>
         <Panel.Body>
           <Grid fluid>
             <Row>
               <Col md={6} sm={6} xs={6}>
-              <InputGroup bsSize="md">
+              <InputGroup>
                   <InputGroup.Addon>Sales</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.sales} onChange={this.handleSales} />
                   <InputGroup.Button>
@@ -58,7 +58,7 @@ class PerformancePanel extends Component {
                 </InputGroup>
               </Col>
               <Col md={6} sm={6} xs={6}>
-                <InputGroup bsSize="md">
+                <InputGroup>
                   <InputGroup.Addon>Calls</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.calls} onChange={this.handleCalls} />
                   <InputGroup.Button>

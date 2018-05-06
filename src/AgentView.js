@@ -12,32 +12,40 @@ class AgentView extends Component {
   constructor(props) {
     
     super(props)
-    
-    this.state = {
+
+    this.brandNewState = {
       sales: 0,
       calls: 0,
+      database: [],
       conversion: 1,
-      level: 'three',
-      tenure: 'above60',
-      message: 'Remember to use the sales process: Opening > Probing > Benefits > Offer > Close',
-      theme: 'United',
-    }
+      theme: 'Cerulean',
+    }    
     
+    this.state = this.brandNewState
+
     this.today = Math.floor((new Date()).getTime() / 1000 / 60 / 60 / 24)
     this.lastUse = parseInt(localStorage.getItem('lastUse'), 10) || 0
     
     this.handleSales =  this.handleSales.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
+    this.handleDatabase = this.handleDatabase.bind(this)
     this.handleTheme = this.handleTheme.bind(this)
-    this.handleTenure =  this.handleTenure.bind(this)
     
   }
   
   componentWillMount() {
-    
-    if(this.today === this.lastUse) {
+
+    if(localStorage.getItem('dazzle')) {
       let dazzle = JSON.parse(localStorage.getItem('dazzle'))
       this.setState(dazzle)
+    }
+
+    if(this.today !== this.lastUse) {
+      this.setState({
+        sales: 0,
+        calls: 0,
+        conversion: 1,
+      })
     }
     
   }
@@ -64,6 +72,14 @@ class AgentView extends Component {
     }, this.handleConversion)
 
   }
+
+  handleDatabase(database) {
+    
+    this.setState({
+      database: database
+    })
+
+  }
   
   handleConversion() {
     
@@ -81,14 +97,6 @@ class AgentView extends Component {
     
     this.setState({
       theme: theme
-    })
-    
-  }
-  
-  handleTenure(tenure) {
-    
-    this.setState({
-      tenure: tenure
     })
     
   }
@@ -117,26 +125,24 @@ class AgentView extends Component {
         </Row>
         <hr />
         <Row>
-          <Tabs className="tabs" defaultActiveKey={3} animation={false} id="tabs">
+          <Tabs className="tabs" defaultActiveKey={1} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
               <Calculator
                 sales={this.state.sales}
                 calls={this.state.calls}
+                database={this.state.database}
                 conversion={this.state.conversion}
                 level={this.state.level}
-                tenure={this.state.tenure}
-                message={this.state.message}
                 handleSales={this.handleSales}
-                handleCalls={this.handleCalls} />
+                handleCalls={this.handleCalls}
+                handleDatabase={this.handleDatabase} />
             </Tab>
             <Tab eventKey={2} title="Hotels">
               <FindHotel />
             </Tab>
             <Tab eventKey={3} title="About">
               <About
-                tenure={this.state.tenure}
                 theme={this.state.theme}
-                handleTenure={this.handleTenure}
                 handleTheme={this.handleTheme} />
             </Tab>
           </Tabs>
