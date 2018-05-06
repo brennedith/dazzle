@@ -67,7 +67,7 @@ class Stopwatch extends Component {
     let statusIcon = this.state.status ? 'pause' : 'play'
     
     return (
-      <InputGroup>
+      <InputGroup bsSize="sm">
         <InputGroup.Button>
           <Button bsStyle="danger" onClick={this.stopStopwatch}>
             <Glyphicon glyph="stop" />

@@ -37,7 +37,7 @@ class Calculator extends Component {
       this.props.database
         .map((dataset) => parseInt(dataset.s, 10))
         .reduce((a, b) => a + b)
-    : 0) + this.props.sales
+    : 0) + parseInt(this.props.sales, 10)
 
     return (
       <Grid fluid>

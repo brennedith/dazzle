@@ -136,25 +136,25 @@ class SalesPanel extends Component {
           <Grid fluid>
             <Row>
               <Col className="less-clutter" md={3}>
-                <InputGroup>
+                <InputGroup bsSize="sm">
                   <FormControl type="number" min="0" placeholder="day"
                     value={this.state.day} onChange={this.updateDay} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
               <Col className="less-clutter" md={4}>
-                <InputGroup>
+                <InputGroup bsSize="sm">
                   <FormControl type="number" min="0" placeholder="sales"
                     value={this.state.sales} onChange={this.updateSales} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
               <Col className="less-clutter" md={4}>
-                <InputGroup>
+                <InputGroup bsSize="sm">
                   <FormControl type="number" min="0" placeholder="calls"
                     value={this.state.calls} onChange={this.updateCalls} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
               <Col className="less-clutter" md={1}>
-                <Button bsStyle="success" onClick={this.addRecord}>
+                <Button bsSize="sm" bsStyle="success" onClick={this.addRecord}>
                   <Glyphicon glyph="plus" />
                 </Button>
               </Col>

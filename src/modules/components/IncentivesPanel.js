@@ -10,25 +10,25 @@ function IncentivesPanel (props) {
           <Grid fluid>
             <Row>
               <Col md={3}>
-                <InputGroup bsSize="lg">
+                <InputGroup>
                   <InputGroup.Addon>3.0</InputGroup.Addon>
                   <FormControl componentClass="span">${ props.sales * 18 }</FormControl>
                 </InputGroup>
               </Col>
               <Col md={3}>
-                <InputGroup bsSize="lg">
+                <InputGroup>
                   <InputGroup.Addon>3.5</InputGroup.Addon>
                   <FormControl componentClass="span">${ props.sales * 24 }</FormControl>
                 </InputGroup>
               </Col>
               <Col md={3}>
-                <InputGroup bsSize="lg">
+                <InputGroup>
                   <InputGroup.Addon>4.0</InputGroup.Addon>
                   <FormControl componentClass="span">${ props.sales * 26 }</FormControl>
                 </InputGroup>
               </Col>
               <Col md={3}>
-                <InputGroup bsSize="lg">
+                <InputGroup>
                   <InputGroup.Addon>4.5</InputGroup.Addon>
                   <FormControl componentClass="span">${ props.sales * 28 }</FormControl>
                 </InputGroup>

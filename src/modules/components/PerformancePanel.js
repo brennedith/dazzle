@@ -46,9 +46,9 @@ class PerformancePanel extends Component {
         <Panel.Body>
           <Grid fluid>
             <Row>
-              <Col md={6} sm={6} xs={6}>
-              <InputGroup>
-                  <InputGroup.Addon>Sales</InputGroup.Addon>
+              <Col className="less-clutter" md={6} sm={6} xs={6}>
+              <InputGroup bsSize="sm">
+                  <InputGroup.Addon>S</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.sales} onChange={this.handleSales} />
                   <InputGroup.Button>
                     <Button bsStyle="success" onClick={this.addSales}>
@@ -57,9 +57,9 @@ class PerformancePanel extends Component {
                   </InputGroup.Button>
                 </InputGroup>
               </Col>
-              <Col md={6} sm={6} xs={6}>
-                <InputGroup>
-                  <InputGroup.Addon>Calls</InputGroup.Addon>
+              <Col className="less-clutter" md={6} sm={6} xs={6}>
+                <InputGroup bsSize="sm">
+                  <InputGroup.Addon>C</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.calls} onChange={this.handleCalls} />
                   <InputGroup.Button>
                     <Button bsStyle="primary" onClick={this.addCall}>
