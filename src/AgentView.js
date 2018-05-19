@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col, Badge, Tabs, Tab } from 'react-bootstrap'
 
+import firebase from './modules/services/firebase.js'
+
 /* import modules and components */
 import StaminaBar from './modules/components/StaminaBar'
 import Calculator from './modules/Calculator'
@@ -14,6 +16,7 @@ class AgentView extends Component {
     super(props)
 
     this.brandNewState = {
+      login: 0,
       sales: 0,
       calls: 0,
       database: [],
@@ -23,9 +26,13 @@ class AgentView extends Component {
     
     this.state = this.brandNewState
 
+    this.firebaseRef = null
+
     this.today = Math.floor((new Date()).getTime() / 1000 / 60 / 60 / 24)
     this.lastUse = parseInt(localStorage.getItem('lastUse'), 10) || 0
     
+    this.handleSignin = this.handleSignin.bind(this)
+    this.handleLogin = this.handleLogin.bind(this)
     this.handleSales =  this.handleSales.bind(this)
     this.handleCalls = this.handleCalls.bind(this)
     this.handleDatabase = this.handleDatabase.bind(this)
@@ -54,9 +61,40 @@ class AgentView extends Component {
     
     localStorage.setItem('lastUse', this.today)
     localStorage.setItem('dazzle', JSON.stringify(this.state))
+
+    if(this.firebaseRef !== null) {
+      this.firebaseRef.set({
+        s: this.state.sales,
+        c: this.state.calls
+      })
+    }
+    
+  }
+
+  handleSignin() {
+
+    if(this.state.login < 101000 || this.state.login > 200000 || this.state.login === '') {
+
+      alert('Please check your login information.')
+      return
+
+    }
+    
+    this.firebaseRef = firebase.database().ref(`/metrics/${this.state.login}`)
+    alert('You are now connected.')
     
   }
   
+  handleLogin(login) {
+
+    this.setState({
+      login: login
+    })
+
+    console.log(this.state.login)
+
+  }
+
   handleSales(sales) {
     
     this.setState({
@@ -106,7 +144,7 @@ class AgentView extends Component {
     let conversion = this.state.conversion * 100
     
     let statusClass = conversion >= 40 ? 'success' :
-                      conversion >= 30 ? 'warning' : 'danger'
+                      conversion >= 35 ? 'warning' : 'danger'
     
     return (
       <Grid fluid>
@@ -142,7 +180,10 @@ class AgentView extends Component {
             </Tab>
             <Tab eventKey={3} title="About">
               <About
+                login={this.state.login}
                 theme={this.state.theme}
+                handleSignin={this.handleSignin}
+                handleLogin={this.handleLogin}
                 handleTheme={this.handleTheme} />
             </Tab>
           </Tabs>
