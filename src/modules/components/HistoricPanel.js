@@ -141,18 +141,21 @@ class SalesPanel extends Component {
             <Row>
               <Col className="less-clutter" md={3}>
                 <InputGroup bsSize="sm">
+                  <InputGroup.Addon>Day</InputGroup.Addon>
                   <FormControl type="number" min="0" placeholder="day"
                     value={this.state.day} onChange={this.updateDay} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
               <Col className="less-clutter" md={4}>
                 <InputGroup bsSize="sm">
+                  <InputGroup.Addon>Sales</InputGroup.Addon>
                   <FormControl type="number" min="0" placeholder="sales"
                     value={this.state.sales} onChange={this.updateSales} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>
               </Col>
               <Col className="less-clutter" md={4}>
                 <InputGroup bsSize="sm">
+                  <InputGroup.Addon>Calls</InputGroup.Addon>
                   <FormControl type="number" min="0" placeholder="calls"
                     value={this.state.calls} onChange={this.updateCalls} onKeyPress={this.handleKeyPress}></FormControl>
                 </InputGroup>

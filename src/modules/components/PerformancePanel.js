@@ -48,7 +48,7 @@ class PerformancePanel extends Component {
             <Row>
               <Col className="less-clutter" md={6} sm={6} xs={6}>
               <InputGroup bsSize="sm">
-                  <InputGroup.Addon>S</InputGroup.Addon>
+                  <InputGroup.Addon>Sales</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.sales} onChange={this.handleSales} />
                   <InputGroup.Button>
                     <Button bsStyle="success" onClick={this.addSales}>
@@ -59,7 +59,7 @@ class PerformancePanel extends Component {
               </Col>
               <Col className="less-clutter" md={6} sm={6} xs={6}>
                 <InputGroup bsSize="sm">
-                  <InputGroup.Addon>C</InputGroup.Addon>
+                  <InputGroup.Addon>Calls</InputGroup.Addon>
                   <FormControl type="number" min="0" value={this.props.calls} onChange={this.handleCalls} />
                   <InputGroup.Button>
                     <Button bsStyle="primary" onClick={this.addCall}>
