@@ -13,69 +13,97 @@ class SupervisorView extends Component {
     super(props)
 
     this.state = {
-      metrics: {}
+      sales: 0,
+      calls: 0,
+      metrics: [],
+      users: {}
     }
 
   }
 
   componentWillMount() {
 
+    this.firebaseRef = firebase.database().ref('/users/')
+    this.firebaseRef.once('value', (snapshot) => {
+      
+      this.setState({
+        users: snapshot.val()
+      })
+      
+    })
+    
     this.firebaseRef = firebase.database().ref('/metrics/')
     this.firebaseRef.on('value', (snapshot) => {
+      
+      let metrics = snapshot.val()
+      let results = []
+      let sales = 0
+      let calls = 0
+    
+      for(let result in metrics) {
+        sales += parseInt(metrics[result].s, 10)
+        calls += parseInt(metrics[result].c, 10)
+    
+        results.push({
+          login: result,
+          sales: parseInt(metrics[result].s, 10),
+          calls: parseInt(metrics[result].c, 10)
+        })
+      }
 
       this.setState({
-        metrics: snapshot.val()
+        sales: sales,
+        calls: calls,
+        metrics: results
       })
-
+      
     })
-
+    
   }
-
+  
   statusClass(conversion) {
     return conversion >= 40 ? 'success' :
-           conversion >= 35 ? 'warning' : 'danger'
+    conversion >= 35 ? 'warning' : 'danger'
   }
-
+  
   render() {
     
     let metrics = this.state.metrics
-    let database = []
+    let users = this.state.users
+    let sales = this.state.sales
+    let calls = this.state.calls
 
-    let sales = 0
-    let calls = 0
-    let conversion = 0
-
-    for(let result in metrics) {
-      sales += parseInt(metrics[result].s, 10)
-      calls += parseInt(metrics[result].c, 10)
-
-      database.push({
-        login: result,
-        sales: parseInt(metrics[result].s, 10),
-        calls: parseInt(metrics[result].c, 10)
-      })
-    }
-
-    conversion = calls === 0 ? 100 : (sales / calls * 100)
+    let conversion = calls === 0 ? 100 : (sales / calls * 100)
     
-    let results = database.map((result, index) => {
+    let results = metrics.map((result, index) => {
 
       let conversion = result.calls === 0 ? 100 : (result.sales / result.calls * 100)
     
       return (
         <tr key={index}>
           <td>{ result.login }</td>
+          <td>{ users[result.login] }</td>
           <td>{ result.sales }</td>
           <td>{ result.calls }</td>
-          <td><Badge className={`alert-${this.statusClass(conversion)}`}>{ conversion.toFixed(2) }%</Badge></td>
+          <td className={`alert-${this.statusClass(conversion)}`}><strong>{ conversion.toFixed(2) }%</strong></td>
         </tr>
       )
     
     })
 
+    let totals = (
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>{ sales }</strong></td>
+        <td><strong>{ calls }</strong></td>
+        <td></td>
+      </tr>
+    )
+
     return(
-      <Grid fluid>
-        <Row>
+      <Grid>
+        <Row className="supervisorStamina">
           <StaminaBar now={conversion} bsStyle={this.statusClass(conversion)} />
         </Row>
         <Row>
@@ -86,12 +114,12 @@ class SupervisorView extends Component {
             <h2 className="center">Conversion <Badge className={`alert-${this.statusClass(conversion)}`}>{ conversion.toFixed(2) }%</Badge></h2>
           </Col>
         </Row>
-        <hr />
         <Row>
-          <Table striped bordered hover>
+          <Table className="center" striped bordered hover>
             <thead>
               <tr>
                 <td>Login</td>
+                <td>Name</td>
                 <td>Sales</td>
                 <td>Calls</td>
                 <td>Conversion</td>
@@ -99,6 +127,7 @@ class SupervisorView extends Component {
             </thead>
             <tbody>
               { results }
+              { totals }
             </tbody>
           </Table>
         </Row>

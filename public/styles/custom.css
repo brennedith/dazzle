@@ -13,6 +13,13 @@
   border-radius: 0;
 }
 
+/* Removes margin-bottom from the stamina bar in the SupervisorView*/
+
+.supervisorStamina > .progress {
+  margin-bottom: 0;
+}
+
+
 /* Less clutter for small spaces */
 
 .less-clutter {

@@ -91,11 +91,13 @@ class AgentView extends Component {
       login: login
     })
 
-    console.log(this.state.login)
-
   }
 
   handleSales(sales) {
+
+    if(isNaN(sales)) {
+      sales = 0
+    }
     
     this.setState({
       sales: sales
@@ -104,6 +106,10 @@ class AgentView extends Component {
   }
   
   handleCalls(calls) {
+
+    if(isNaN(calls)) {
+      calls = 0
+    }
     
     this.setState({
       calls: calls
