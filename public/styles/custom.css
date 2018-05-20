@@ -13,12 +13,17 @@
   border-radius: 0;
 }
 
-/* Removes margin-bottom from the stamina bar in the SupervisorView*/
+/* Removes margin-bottom from the stamina bar and reduces margin of h2 in small screens */
 
-.supervisorStamina > .progress {
-  margin-bottom: 0;
+@media only screen and (max-width: 900px) {
+  .progress {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    margin: 3px;
+  }
 }
-
 
 /* Less clutter for small spaces */
 

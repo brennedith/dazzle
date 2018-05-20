@@ -13,6 +13,7 @@ class About extends Component {
     
     this.handleLogin = this.handleLogin.bind(this)
     this.handleTheme = this.handleTheme.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
     
   }
 
@@ -25,6 +26,14 @@ class About extends Component {
   handleTheme(e) {
     
     this.props.handleTheme(e.target.dataset.theme)
+    
+  }
+
+  handleKeyPress(e) {
+    
+    if(e.charCode === 13) {
+      this.props.handleSignin()
+    }
     
   }
   
@@ -49,10 +58,12 @@ class About extends Component {
               { themeItems }
               </DropdownButton>
             </FormGroup>
+            <hr />
             <FormGroup>
               <ControlLabel>Login id</ControlLabel>
               &nbsp;
-              <FormControl type="number" value={this.props.login} onChange={this.handleLogin} />
+              <FormControl type="number" min="100000" max="200000"
+              value={this.props.login} onChange={this.handleLogin} onKeyPress={this.handleKeyPress} />
             </FormGroup>
             <Button bsStyle="success" onClick={this.props.handleSignin}>Connect</Button>
           </Col>

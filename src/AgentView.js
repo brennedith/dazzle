@@ -16,7 +16,7 @@ class AgentView extends Component {
     super(props)
 
     this.brandNewState = {
-      login: 0,
+      login: 100000,
       sales: 0,
       calls: 0,
       database: [],
@@ -79,22 +79,46 @@ class AgentView extends Component {
       return
 
     }
+
+    this.userRef = firebase.database().ref(`/users/${this.state.login}`)
     
-    this.firebaseRef = firebase.database().ref(`/metrics/${this.state.login}`)
-    alert('You are now connected.')
+    this.userRef.once('value', (snapshot) => {
+      
+      let user = snapshot.val()
+
+      if(user !== null){
+
+        this.firebaseRef = firebase.database().ref(`/metrics/${this.state.login}`)
+        alert(`You are now connected.\nWelcome ${user}`)
+          
+      } else {
+          
+        alert('Login id not found.')
+
+      }
+
+    })
     
   }
   
   handleLogin(login) {
 
-    this.setState({
-      login: login
-    })
+    login = parseInt(login, 10)
+
+    if(!isNaN(login)) {
+    
+      this.setState({
+        login: login
+      })
+    
+    }
 
   }
 
   handleSales(sales) {
 
+    sales = parseInt(sales, 10)
+    
     if(isNaN(sales)) {
       sales = 0
     }
@@ -107,6 +131,8 @@ class AgentView extends Component {
   
   handleCalls(calls) {
 
+    calls = parseInt(calls, 10)
+    
     if(isNaN(calls)) {
       calls = 0
     }
@@ -127,8 +153,8 @@ class AgentView extends Component {
   
   handleConversion() {
     
-    let sales = parseInt(this.state.sales, 10)
-    let calls = parseInt(this.state.calls, 10)
+    let sales = this.state.sales
+    let calls = this.state.calls
     let conversion = calls === 0 ? 1 : (sales / calls)
     
     this.setState({
@@ -169,7 +195,7 @@ class AgentView extends Component {
         </Row>
         <hr />
         <Row>
-          <Tabs className="tabs" defaultActiveKey={1} animation={false} id="tabs">
+          <Tabs className="tabs" defaultActiveKey={3} animation={false} id="tabs">
             <Tab eventKey={1} title="Calculator">
               <Calculator
                 sales={this.state.sales}

@@ -41,13 +41,17 @@ class SupervisorView extends Component {
       let calls = 0
     
       for(let result in metrics) {
-        sales += parseInt(metrics[result].s, 10)
-        calls += parseInt(metrics[result].c, 10)
+
+        let result_sales = parseInt(metrics[result].s, 10)
+        let result_calls = parseInt(metrics[result].c, 10)
+
+        sales += result_sales
+        calls += result_calls
     
         results.push({
           login: result,
-          sales: parseInt(metrics[result].s, 10),
-          calls: parseInt(metrics[result].c, 10)
+          sales: result_sales,
+          calls: result_calls
         })
       }
 

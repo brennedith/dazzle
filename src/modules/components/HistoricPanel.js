@@ -8,9 +8,9 @@ class SalesPanel extends Component {
     super(props)
 
     this.brandNewState = {
-      day: '',
-      sales: '',
-      calls: '',
+      day: 0,
+      sales: 0,
+      calls: 0,
     }
 
     this.state = this.brandNewState
@@ -51,15 +51,19 @@ class SalesPanel extends Component {
 
   addRecord() {
     
-    if(this.state.day === '' || this.state.sales === '' || this.state.calls === '') {
+    let day = parseInt(this.state.day, 10)
+    let sales = parseInt(this.state.sales, 10)
+    let calls = parseInt(this.state.calls, 10)
+    
+    if( isNaN(day) || isNaN(sales) || isNaN(calls)) {
       return
     }
     
     let database = this.props.database
     database.push({
-      d: this.state.day,
-      s: this.state.sales,
-      c: this.state.calls
+      d: day,
+      s: sales,
+      c: calls
     })
     
     this.setState(this.brandNewState)
@@ -89,13 +93,13 @@ class SalesPanel extends Component {
     
     let totalSales = this.props.database.length > 0 ?
       this.props.database
-        .map((dataset) => parseInt(dataset.s, 10))
-        .reduce((a, b) => a + b)
+        .map((result) => parseInt(result.s, 10))
+        .reduce((a, b) => a + b) || 0
     : 0
     
     let totalCalls = this.props.database.length > 0 ?
       this.props.database
-        .map((dataset) => parseInt(dataset.c, 10))
+        .map((result) => parseInt(result.c, 10))
         .reduce((a, b) => a + b) || 0
     : 0
 
@@ -116,11 +120,11 @@ class SalesPanel extends Component {
       </tr>  
     )
     
-    let salesList = this.props.database.map((dataset, index) => (
+    let salesList = this.props.database.map((result, index) => (
       <tr key={index}>
-        <td>{ dataset.d }</td>
-        <td>{ dataset.s }</td>
-        <td>{ dataset.c }</td>
+        <td>{ result.d }</td>
+        <td>{ result.s }</td>
+        <td>{ result.c }</td>
         <td>
           <Button bsStyle="danger" bsSize="xs" onClick={() => this.removeRecord(index)}>
             <Glyphicon glyph="trash" />
